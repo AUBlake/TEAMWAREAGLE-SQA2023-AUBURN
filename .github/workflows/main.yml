@@ -16,8 +16,5 @@ jobs:
         with:
           python-version: "3.10"
 
-      - run: pip install -r requirements.txt
-        shell: bash
-
       - run: python fuzz.py
         shell: bash
