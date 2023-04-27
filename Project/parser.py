@@ -16,7 +16,7 @@ def checkIfWeirdYAML(yaml_script):
         val = True 
     return val 
 
-
+#Natha was here
 
 def keyMiner(dic_, value):
   '''
