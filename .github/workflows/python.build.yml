@@ -29,5 +29,4 @@ jobs:
       run: |
         python TEST_PARSING.py  
     - name: Run fuzzing testing
-      run: |
-        python fuzz.py
+      run: python fuzz.py
