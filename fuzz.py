@@ -1,19 +1,20 @@
 import numpy as np
 import traceback
 
+from typing import Any, List
 # from Project.graphtaint import getMatchingTemplates
 from Project.scanner import scanUserName, scanPasswords, isValidKey
 from Project.parser import getValsFromKey, keyMiner
 
 def fuzz(method, fuzzed_args: List[Any]):
-    for item in fuzzed_args:
+    for args in fuzzed_args:
         try:
             result = method(*args)
         except Exception as exc:
-            print(f"Fuzz: {method:__name__} Failed")
+            print(f"Fuzz: {method.__name__} Failed")
             traceback.print_exc()
         else:
-            print(f"Fuzz: {method:__name__} Passed ({result})")
+            print(f"Fuzz: {method.__name__} Passed ({result})")
 
 
 if __name__ == "__main__":
@@ -40,7 +41,7 @@ if __name__ == "__main__":
         ),
         (
             scanPasswords, [
-                ([]),
+                ([], ""),
                 (None, 0),
                 (None, 1.0),
                 (None, "bad-iterable"),
