@@ -1,0 +1,12 @@
+2023-04-30 16:14:03,737 Executing scanner.py
+2023-04-30 16:14:03,737 True
+2023-04-30 16:14:03,737 Username authentication check complete
+2023-04-30 16:14:03,737 True
+2023-04-30 16:14:03,737 Password authentication check complete
+2023-04-30 16:14:03,737 False
+2023-04-30 16:14:03,737 Key authentication check complete
+2023-04-30 16:14:03,737 True
+2023-04-30 16:14:03,737 Secret authentication check complete
+2023-04-30 16:14:03,737 []
+2023-04-30 16:14:03,737 YAML Files retreival attempt complete
+2023-04-30 16:14:03,737 scanner.py Run Complete

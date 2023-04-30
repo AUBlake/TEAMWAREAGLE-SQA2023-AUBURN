@@ -3,6 +3,7 @@ Akond Rahman
 May 03, 2021 
 Code to detect security anti-patterns 
 '''
+import logger
 import parser 
 import constants 
 import graphtaint 
@@ -717,7 +718,34 @@ def scanForUnconfinedSeccomp(path_script ):
                     dic[cnt] = [] 
     return dic  
 
+
 if __name__ == '__main__':
+
+    logObj = logger.giveMeLoggingObject()
+    logObj.info('Executing scanner.py')
+    a = isValidUserName('valid')
+    logObj.info(a)
+    logObj.info('Username authentication check complete')
+    b = isValidPasswordName('valid')
+    logObj.info(b)
+    logObj.info('Password authentication check complete')
+    c = isValidKey('valid')
+    logObj.info(c)
+    logObj.info('Key authentication check complete')
+    d = checkIfValidSecret('flag2Ret')
+    logObj.info(d)
+    logObj.info('Secret authentication check complete')
+    e = getYAMLFiles('valid_')
+    logObj.info(e)
+    logObj.info('YAML Files retreival attempt complete')
+    logObj.info('scanner.py Run Complete')
+
+    
+
+
+
+
+# if __name__ == '__main__':
     # test_yaml = '/Users/arahman/K8S_REPOS/GITLAB_REPOS/kubernetes-tutorial-series-youtube/kubernetes-configuration-file-explained/nginx-deployment-result.yaml'
     # scanSingleManifest(test_yaml) 
     # another_yaml = '/Users/arahman/K8S_REPOS/GITLAB_REPOS/stackgres/stackgres-k8s/install/helm/stackgres-operator/values.yaml'
@@ -763,4 +791,4 @@ if __name__ == '__main__':
     # cap_sys_module_yaml = 'TEST_ARTIFACTS/cap-module-ostk.yaml'
     # cap_sys_module_dic  = scanForCAPMODULE ( cap_sys_module_yaml )   
 
-    print(cap_sys_module_dic)  
+    # print(cap_sys_module_dic)
