@@ -11,6 +11,9 @@ import os
 import pandas as pd 
 import numpy as np 
 
+logObj = logger.giveMeLoggingObject()
+logObj.info('Executing scanner.py')
+
 def getYAMLFiles(path_to_dir):
     valid_  = [] 
     for root_, dirs, files_ in os.walk( path_to_dir ):
@@ -19,9 +22,12 @@ def getYAMLFiles(path_to_dir):
            if(os.path.exists(full_p_file)):
              if (full_p_file.endswith( constants.YML_EXTENSION  )  or full_p_file.endswith( constants.YAML_EXTENSION  )  ):
                valid_.append(full_p_file)
-    return valid_ 
+    logObj.info('YAML Files retreival attempt complete')
+    return valid_
 
 def isValidUserName(uName): 
+
+
     valid = True
     if (isinstance( uName , str)  ): 
         if( any(z_ in uName for z_ in constants.FORBIDDEN_USER_NAMES )   ): 
@@ -30,9 +36,13 @@ def isValidUserName(uName):
             valid = True    
     else: 
         valid = False   
+
+    #logObj.info(a)
+    logObj.info('Username authentication check complete')
     return valid
 
 def isValidPasswordName(pName): 
+
     valid = True
     if (isinstance( pName , str)  ): 
         if( any(z_ in pName for z_ in constants.FORBIDDEN_PASS_NAMES) )  : 
@@ -40,10 +50,15 @@ def isValidPasswordName(pName):
         else: 
             valid = True    
     else: 
-        valid = False               
+        valid = False     
+
+    
+    #logObj.info(b)
+    logObj.info('Password authentication check complete')          
     return valid
 
 def isValidKey(keyName): 
+
     valid = False 
     if ( isinstance( keyName, str )  ):
         if( any(z_ in keyName for z_ in constants.LEGIT_KEY_NAMES ) ) : 
@@ -51,10 +66,15 @@ def isValidKey(keyName):
         else: 
             valid = False     
     else: 
-        valid = False                      
+        valid = False    
+
+    
+    #logObj.info(c)
+    logObj.info('Key authentication check complete')                  
     return valid    
 
 def checkIfValidSecret(single_config_val):
+
     flag2Ret = False 
     # print(type( single_config_val ), single_config_val  )
     if ( isinstance( single_config_val, str ) ):
@@ -67,6 +87,10 @@ def checkIfValidSecret(single_config_val):
                 flag2Ret = True 
     else: 
         flag2Ret = False 
+
+   
+    #logObj.info(d)
+    logObj.info('Secret authentication check complete')
     return flag2Ret
 
 def scanUserName(k_ , val_lis ):
@@ -697,6 +721,7 @@ def scanAllowPrivileges(path_script ):
 
 def scanForUnconfinedSeccomp(path_script ):
     dic, lis   = {}, []
+
     if ( parser.checkIfValidK8SYaml( path_script )  ): 
         cnt = 0 
         dict_as_list = parser.loadMultiYAML( path_script )
@@ -716,29 +741,30 @@ def scanForUnconfinedSeccomp(path_script ):
                 # print( relevant_values )
                 if constants.UNCONFIED_KW in relevant_values:
                     dic[cnt] = [] 
+
     return dic  
 
 
 if __name__ == '__main__':
 
     logObj = logger.giveMeLoggingObject()
-    logObj.info('Executing scanner.py')
-    a = isValidUserName('valid')
-    #logObj.info(a)
-    logObj.info('Username authentication check complete')
-    b = isValidPasswordName('valid')
-    #logObj.info(b)
-    logObj.info('Password authentication check complete')
-    c = isValidKey('valid')
-    #logObj.info(c)
-    logObj.info('Key authentication check complete')
-    d = checkIfValidSecret('flag2Ret')
-    #logObj.info(d)
-    logObj.info('Secret authentication check complete')
     e = getYAMLFiles('valid_')
-    #logObj.info(e)
-    logObj.info('YAML Files retreival attempt complete')
-    logObj.info('scanner.py Run Complete')
+    # logObj.info('Executing scanner.py')
+    a = isValidUserName('valid')
+    # logObj.info(a)
+    # logObj.info('Username authentication check complete')
+    b = isValidPasswordName('valid')
+    # logObj.info(b)
+    # logObj.info('Password authentication check complete')
+    c = isValidKey('valid')
+    # logObj.info(c)
+    # logObj.info('Key authentication check complete')
+    d = checkIfValidSecret('flag2Ret')
+    # logObj.info(d)
+    # logObj.info('Secret authentication check complete')
+    # logObj.info(e)
+    # logObj.info('YAML Files retreival attempt complete')
+    # logObj.info('scanner.py Run Complete')
 
     
 
